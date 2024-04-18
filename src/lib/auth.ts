@@ -1,7 +1,7 @@
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
 import prisma from "../../lib/prisma";
-import { RoleUser } from "@prisma/client";
-import { Lucia } from "lucia";
+import { RoleUser, Session } from "@prisma/client";
+import { Lucia, User } from "lucia";
 import { cache } from "react";
 import { cookies } from "next/headers";
 
@@ -24,31 +24,40 @@ export const lucia = new Lucia(adapter, {
 });
 
 // Validate Session Cookies
-export const getUser = cache(async () => {
-  const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
-  if (!sessionId) return null;
-  const { user, session } = await lucia.validateSession(sessionId);
-  try {
-    if (session && session.fresh) {
-      const sessionCookie = lucia.createSessionCookie(session.id);
-      cookies().set(
-        sessionCookie.name,
-        sessionCookie.value,
-        sessionCookie.attributes
-      );
+export const getUser = cache(
+  async (): Promise<
+    { user: User; session: Session } | { user: null; session: null }
+  > => {
+    const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
+    if (!sessionId) {
+      return {
+        session: null,
+        user: null,
+      };
     }
-    if (!session) {
-      const sessionCookie = lucia.createBlankSessionCookie();
-      cookies().set(
-        sessionCookie.name,
-        sessionCookie.value,
-        sessionCookie.attributes
-      );
-    }
-  } catch (error) {}
+    const result = await lucia.validateSession(sessionId);
+    try {
+      if (result.session && result.session.fresh) {
+        const sessionCookie = lucia.createSessionCookie(result.session.id);
+        cookies().set(
+          sessionCookie.name,
+          sessionCookie.value,
+          sessionCookie.attributes
+        );
+      }
+      if (!result.session) {
+        const sessionCookie = lucia.createBlankSessionCookie();
+        cookies().set(
+          sessionCookie.name,
+          sessionCookie.value,
+          sessionCookie.attributes
+        );
+      }
+    } catch (error) {}
 
-  return user;
-});
+    return result;
+  }
+);
 
 declare module "lucia" {
   interface Register {
