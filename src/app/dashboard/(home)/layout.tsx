@@ -50,7 +50,7 @@ export default async function RootLayout({
                   asChild
                   className="w-full justify-start"
                 >
-                  <Link href={"/airplane"}>
+                  <Link href={"/dashboard/airplane"}>
                     <Plane className="mr-2 w-4 h-4" />
                     AirPLane
                   </Link>
@@ -62,7 +62,7 @@ export default async function RootLayout({
                   asChild
                   className="w-full justify-start"
                 >
-                  <Link href={"/flights"}>
+                  <Link href={"/dashboard/flights"}>
                     <BookOpen className="mr-2 w-4 h-4" />
                     Flights
                   </Link>
@@ -74,7 +74,7 @@ export default async function RootLayout({
                   asChild
                   className="w-full justify-start"
                 >
-                  <Link href={"/tickets"}>
+                  <Link href={"/dashboard/tickets"}>
                     <Ticket className="mr-2 w-4 h-4" />
                     Tickets
                   </Link>
@@ -86,7 +86,7 @@ export default async function RootLayout({
                   asChild
                   className="w-full justify-start"
                 >
-                  <Link href={"/users"}>
+                  <Link href={"/dashboard/users"}>
                     <User className="mr-2 w-4 h-4" />
                     Users
                   </Link>
