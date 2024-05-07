@@ -22,7 +22,7 @@ type FilterState = {
   date?: string | null;
   planeId: string;
   planeIds: string[];
-  seat?: string | null;
+  typeSeat?: string | null;
 };
 
 type FilterAction = {
@@ -47,7 +47,7 @@ function filterReducer(state: FilterState, action: FilterAction): FilterState {
     case FilterActionKind.SET_SEAT:
       return {
         ...state,
-        seat: payload.seat,
+        typeSeat: payload.typeSeat,
       };
     default:
       return state;
@@ -82,7 +82,7 @@ export default function FlightProvider({ children }: FlightProviderProps) {
     date: params.date,
     planeId: "",
     planeIds: [],
-    seat: null,
+    typeSeat: null,
   });
 
   const { data, isLoading } = useQuery({

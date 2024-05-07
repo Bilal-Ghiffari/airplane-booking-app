@@ -4,6 +4,7 @@ import SlideDetail from "./components/organism/slide-detail";
 import { getFlightById } from "../../lib/data";
 import { getUser } from "@/lib/auth";
 import { Session } from "lucia";
+import { User } from "lucia";
 
 type Params = {
   id: string;
@@ -14,7 +15,7 @@ interface ChooseSeatType {
 }
 
 export default async function ChooseSeat({ params }: ChooseSeatType) {
-  const { session } = await getUser();
+  const { session, user } = await getUser();
   const flight = await getFlightById(params.id);
   return (
     <section
@@ -61,7 +62,13 @@ export default async function ChooseSeat({ params }: ChooseSeatType) {
           </div>
         </div>
       </div>
-      {flight && <SlideDetail flight={flight} session={session as Session} />}
+      {flight && (
+        <SlideDetail
+          flight={flight}
+          session={session as Session}
+          user={user as User}
+        />
+      )}
     </section>
   );
 }

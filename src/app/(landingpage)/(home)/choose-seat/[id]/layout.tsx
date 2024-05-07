@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
-import SeatProvider from "./provider/seat-provider";
+import SeatNumberProvider from "./provider/seat-provider";
 
 export default function RootLayout({
   children,
@@ -10,8 +10,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SeatProvider>
+    <SeatNumberProvider>
       {children} <Toaster />
-    </SeatProvider>
+    </SeatNumberProvider>
   );
 }

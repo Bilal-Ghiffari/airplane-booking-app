@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 import { lucia } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export async function signInUsers(
   prevState: unknown,
@@ -55,6 +56,6 @@ export async function signInUsers(
     sessionCookie.value,
     sessionCookie.attributes
   );
-
+  revalidatePath("/");
   return redirect("/");
 }

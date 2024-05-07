@@ -14,17 +14,19 @@ import { AirPlane, Flight, FlightSeat } from "@prisma/client";
 import React, { useContext, useMemo } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { SeatContext, SeatContextType } from "../../provider/seat-provider";
-import { Session } from "lucia";
+import { Session, User } from "lucia";
 import { useRouter } from "next/navigation";
 
 type SlideDetailFlightType = {
   flight: Flight & { seats: FlightSeat[]; plane: AirPlane };
   session: Session | null;
+  user: User;
 };
 
 export default function SlideDetail({
   flight,
   session,
+  user,
 }: SlideDetailFlightType) {
   const { toast } = useToast();
   const router = useRouter();
@@ -32,8 +34,8 @@ export default function SlideDetail({
   const { seat } = useContext(SeatContext) as SeatContextType;
 
   const selectedSeat = useMemo(() => {
-    return SEAT_VALUES[(checkout?.seat as SeatValuesType) ?? "ECONOMY"];
-  }, [checkout?.seat]);
+    return SEAT_VALUES[(checkout?.typeSeat as SeatValuesType) ?? "ECONOMY"];
+  }, [checkout?.typeSeat]);
 
   const continueBook = () => {
     if (seat === null) {
@@ -43,15 +45,16 @@ export default function SlideDetail({
       });
       return;
     }
-
-    if (session === null) {
+    console.log("session", session);
+    console.log("user", user);
+    if (session === null || user?.role === "ADMIN") {
       router.replace("/sign-in");
       return;
     }
 
     const checkoutData: Checkout = {
       id: checkout?.id,
-      seat: checkout?.seat,
+      typeSeat: checkout?.typeSeat,
       flightDetetail: flight,
       seatDetail: seat,
     };

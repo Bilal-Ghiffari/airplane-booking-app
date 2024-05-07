@@ -1,12 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import React, { useContext, useMemo } from "react";
-import {
-  FlightContext,
-  FlightContextType,
-  FlightWithPlane,
-} from "../../providers/flight-provider";
 import { retrievePublicUrl } from "@/lib/supabase";
 import {
   CHECKOUT_KEY,
@@ -15,8 +8,14 @@ import {
   SEAT_VALUES,
   SeatValuesType,
 } from "@/lib/utils";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import useCheckoutData from "@/hooks/useCheckout";
+import { useContext, useMemo } from "react";
+import {
+  FlightContext,
+  FlightContextType,
+  FlightWithPlane,
+} from "../../providers/flight-provider";
 
 type FlightItem = {
   data: FlightWithPlane;
@@ -25,14 +24,17 @@ type FlightItem = {
 export default function FlightItem({ data }: FlightItem) {
   const { state } = useContext(FlightContext) as FlightContextType;
   const selectedSeat = useMemo(() => {
-    return SEAT_VALUES[(state.seat as SeatValuesType) ?? "ECONOMY"];
-  }, [state.seat]);
+    return SEAT_VALUES[(state.typeSeat as SeatValuesType) ?? "ECONOMY"];
+  }, [state.typeSeat]);
 
   const router = useRouter();
   const bookNow = () => {
     sessionStorage.setItem(
       CHECKOUT_KEY,
-      JSON.stringify({ id: data.id, seat: state.seat ? state.seat : "ECONOMY" })
+      JSON.stringify({
+        id: data.id,
+        typeSeat: state.typeSeat ? state.typeSeat : "ECONOMY",
+      })
     );
     router.push(`/choose-seat/${data.id}`);
   };

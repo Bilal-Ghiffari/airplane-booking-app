@@ -12,13 +12,13 @@ type SeatListType = {
 export default function SeatList({ seats }: SeatListType) {
   const checkout = useCheckoutData();
   const { seatA, seatB, seatC, seatD } = useMemo(() => {
-    const typeSeats = seats.filter((seat) => seat.type === checkout?.seat);
+    const typeSeats = seats.filter((seat) => seat.type === checkout?.typeSeat);
     const seatA = typeSeats.filter((seat) => seat.seatNumber.startsWith("A"));
     const seatB = typeSeats.filter((seat) => seat.seatNumber.startsWith("B"));
     const seatC = typeSeats.filter((seat) => seat.seatNumber.startsWith("C"));
     const seatD = typeSeats.filter((seat) => seat.seatNumber.startsWith("D"));
     return { seatA, seatB, seatC, seatD };
-  }, [checkout, seats]);
+  }, [checkout?.typeSeat, seats]);
   return (
     <form className="flex flex-row justify-between gap-5">
       <div className="flex gap-5">

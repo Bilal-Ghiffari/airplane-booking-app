@@ -19,7 +19,7 @@ export default function SeatClass({}: Props) {
       type: FilterActionKind.SET_SEAT,
       payload: {
         planeId: "",
-        seat: event.target.value,
+        typeSeat: event.target.value,
       },
     });
   };

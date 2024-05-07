@@ -19,8 +19,8 @@ export default function Navbar() {
       </Link>
       <ul className="nav-menus flex gap-[30px] items-center w-fit">
         <li>
-          <Link href="/available-flights" className="font-medium">
-            Available Flights
+          <Link href="" className="font-medium">
+            Flights
           </Link>
         </li>
         <li>

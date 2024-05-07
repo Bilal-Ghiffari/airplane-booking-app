@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Navbar from "../../components/molecules/navbar";
 import TicketCard from "./components/ticket-card";
 import { getMyTicket } from "./lib/data";
+import Image from "next/image";
 
 export default async function MyTickets() {
   const { session, user } = await getUser();

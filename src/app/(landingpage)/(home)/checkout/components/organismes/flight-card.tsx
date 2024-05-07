@@ -14,8 +14,8 @@ type FlightCardProps = {
 export default function FlightCard({ user }: FlightCardProps) {
   const checkout = useCheckoutData();
   const selectedSeat = useMemo(() => {
-    return SEAT_VALUES[(checkout?.seat as SeatValuesType) ?? "ECONOMY"];
-  }, [checkout?.seat]);
+    return SEAT_VALUES[(checkout?.typeSeat as SeatValuesType) ?? "ECONOMY"];
+  }, [checkout?.typeSeat]);
   return (
     <div className="bg-white flex flex-col rounded-[20px] w-[340px]">
       <div className="flex flex-col p-[20px_20px_25px] border-b-2 border-dotted border-flysha-grey gap-4 relative">

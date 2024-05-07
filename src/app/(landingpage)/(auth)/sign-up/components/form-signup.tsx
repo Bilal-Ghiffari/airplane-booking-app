@@ -82,7 +82,7 @@ export default function FormSignUp({}: Props) {
       </div>
       <SubmitFormButton />
       <Link
-        href="signin.html"
+        href="/sign-in"
         className="text-center text-flysha-black hover:text-white rounded-full bg-white hover:bg-flysha-black font-semibold w-full p-[12px_30px] border border-flysha-black transition-all duration-300"
       >
         Sign In

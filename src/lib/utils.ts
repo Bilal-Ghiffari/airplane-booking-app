@@ -5,9 +5,9 @@ import dayjs from "dayjs";
 
 export type Checkout = {
   id?: string;
-  seat?: TypeSeat;
+  typeSeat?: TypeSeat;
   flightDetetail?: Flight & { plane: AirPlane };
-  seatDetail?: FlightSeat;
+  seatDetail?: FlightSeat | Pick<FlightSeat, "id" | "seatNumber">;
 };
 export const CHECKOUT_KEY = "CHECKOUT_KEY";
 export const SEAT_VALUES = {

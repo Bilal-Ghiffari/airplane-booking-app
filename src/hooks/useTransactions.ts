@@ -26,8 +26,8 @@ const useTransaction = ({ user }: Props) => {
   const router = useRouter();
 
   const selectedSeat = useMemo(() => {
-    return SEAT_VALUES[(checkout?.seat as SeatValuesType) ?? "ECONOMY"];
-  }, [checkout?.seat]);
+    return SEAT_VALUES[(checkout?.typeSeat as SeatValuesType) ?? "ECONOMY"];
+  }, [checkout?.typeSeat]);
 
   const transactionMutate = useMutation({
     mutationFn: (data: any) =>

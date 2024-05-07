@@ -17,10 +17,10 @@ export async function POST(request: NextRequest) {
         departureCity: body.departure !== null ? body.departure : {},
         destinationCity: body.arrival !== null ? body.arrival : {},
         seats:
-          body.seat !== null
+          body.typeSeat !== null
             ? {
                 some: {
-                  type: body.seat as TypeSeat,
+                  type: body.typeSeat as TypeSeat,
                   isBooked: false,
                 },
               }
