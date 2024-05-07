@@ -94,7 +94,6 @@ export const makeId = (length: number) => {
     result += characters.charAt(Math.floor(Math.random() * charctersLength));
     counter += 1;
   }
-  console.log(result);
   return result;
 };
 

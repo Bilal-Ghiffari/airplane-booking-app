@@ -24,8 +24,6 @@ type FlightItem = {
 
 export default function FlightItem({ data }: FlightItem) {
   const { state } = useContext(FlightContext) as FlightContextType;
-  console.log("state", state);
-  console.log("dataFligth", data);
   const selectedSeat = useMemo(() => {
     return SEAT_VALUES[(state.seat as SeatValuesType) ?? "ECONOMY"];
   }, [state.seat]);

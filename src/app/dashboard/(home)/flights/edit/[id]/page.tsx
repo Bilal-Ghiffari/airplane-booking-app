@@ -14,7 +14,6 @@ interface EditFlightPageProps {
 export default async function EditFlightPage({ params }: EditFlightPageProps) {
   const airplanes = await getAirPLanes();
   const data = await getFlightById(params.id);
-  // console.log("dataflight", data);
   return (
     <div>
       <div className="flex flex-row items-center justify-between">

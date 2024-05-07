@@ -47,7 +47,6 @@ const useTransaction = ({ user }: Props) => {
     // const totalPrice = BigInt(
     //   checkout?.flightDetetail?.price ?? 0 + selectedSeat.additionalPrice
     // );
-    // console.log("totalPrice", typeof totalPrice);
     const body: any = {
       bookingDate: new Date(),
       customerId: user?.id ?? "user not found",
@@ -64,7 +63,6 @@ const useTransaction = ({ user }: Props) => {
     try {
       setIsLoading(true);
       const transaction = await transactionMutate.mutateAsync(body);
-      console.log("resTransaction", transaction);
       window.snap.pay(transaction?.midtrans?.token, {
         onSuccess: (result: unknown) => {
           console.log(result);

@@ -6,7 +6,6 @@ type Props = {};
 
 export default async function FilterAirLine({}: Props) {
   const airplane = await getAirplanes();
-  // console.log(airplane);
   return (
     <div className="flex flex-col gap-4">
       <p className="font-semibold">Airlines</p>

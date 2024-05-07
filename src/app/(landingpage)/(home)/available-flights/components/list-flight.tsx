@@ -11,7 +11,6 @@ type Props = {};
 
 export default function ListFlight({}: Props) {
   const { flights, isLoading } = useContext(FlightContext) as FlightContextType;
-  console.log("flights", flights);
   if (isLoading) {
     return <LoadingListFlight />;
   }

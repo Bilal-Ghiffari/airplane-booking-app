@@ -19,7 +19,6 @@ interface DetailTicket {
 
 export default async function DetailTicket({ params }: DetailTicket) {
   const detailTicket = await getMyTicketDetail(params.id);
-  console.log(detailTicket);
   return (
     <>
       <section

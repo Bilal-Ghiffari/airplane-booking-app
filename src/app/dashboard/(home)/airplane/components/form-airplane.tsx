@@ -37,7 +37,6 @@ export default function FormAirplane({
     type === "ADD" ? saveAirplane : updateAirplaneWithId,
     initialFormState
   );
-  // console.log("default", defaultValues?.image);
   return (
     <form className="w-[40%] space-y-4" action={formAction}>
       {state.errorTitle !== null && (

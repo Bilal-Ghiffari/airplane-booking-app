@@ -36,7 +36,6 @@ export const columns: ColumnDef<AirPlane>[] = [
     id: "actions",
     cell: ({ row }) => {
       const plane = row.original;
-      console.log("original", plane);
       return (
         <div className="inline-flex gap-6 items-center">
           <Button variant="secondary" size="sm" asChild>

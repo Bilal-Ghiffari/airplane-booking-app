@@ -7,7 +7,6 @@ const MIDTRANS_AUTH_KEY = process.env.NEXT_PUBLIC_MIDTRANS_AUTH_KEY ?? "";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  console.log("bodyJson", body);
   try {
     const transactions = await prisma.ticket.create({
       data: {
@@ -48,7 +47,6 @@ export async function POST(request: NextRequest) {
         },
       ],
     };
-    console.log("transactionID", parameter);
     const resMidtrans = await fetch(MIDTRANS_URL, {
       method: "POST",
       headers: {
@@ -60,8 +58,6 @@ export async function POST(request: NextRequest) {
     });
 
     const midtrans = await resMidtrans.json();
-    console.log("ResMidtrans", midtrans);
-
     await prisma.ticket.update({
       where: {
         id: transactions.id,

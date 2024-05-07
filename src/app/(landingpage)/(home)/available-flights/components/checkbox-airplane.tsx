@@ -17,7 +17,6 @@ export default function CheckboxAirplane({ val }: CheckBoxAirPLaneType) {
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    console.log("value", value);
     const isChecked = event.target.checked;
 
     dispatch({

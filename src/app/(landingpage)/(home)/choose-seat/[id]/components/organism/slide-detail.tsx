@@ -35,10 +35,6 @@ export default function SlideDetail({
     return SEAT_VALUES[(checkout?.seat as SeatValuesType) ?? "ECONOMY"];
   }, [checkout?.seat]);
 
-  console.log(selectedSeat);
-  console.log(seat);
-  console.log(checkout);
-
   const continueBook = () => {
     if (seat === null) {
       toast({

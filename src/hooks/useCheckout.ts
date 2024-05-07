@@ -10,7 +10,6 @@ const useCheckoutData = () => {
       if (value) {
         setData(JSON.parse(value));
       }
-      // console.log(value);
     }
   }, []);
   console.log(data);

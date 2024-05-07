@@ -145,10 +145,8 @@ export async function deleteAirplane(
   id: string
 ): Promise<ActionResult | undefined> {
   const data = await prisma.airPlane.findFirst({
-    where: { id},
+    where: { id },
   });
-
-  console.log("delted", data);
 
   if (!data) {
     return {
@@ -167,7 +165,7 @@ export async function deleteAirplane(
 
   try {
     await prisma.airPlane.delete({
-      where: { id},
+      where: { id },
     });
   } catch (error) {
     return {
