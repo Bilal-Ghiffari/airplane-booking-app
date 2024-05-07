@@ -32,6 +32,10 @@ export default function ColumnSeatPrice({ flight }: ColumnSeatPriceProps) {
               {rupiahFormat(flight.price)}
             </div>
             <div className="font-medium">
+              <span className="text-primary">Harga baggage:</span>{" "}
+              {rupiahFormat(flight.baggage)}
+            </div>
+            <div className="font-medium">
               <span className="text-primary">Sisa kursi:</span> {economy}/
               {totalSeatEconomy}
             </div>
@@ -47,6 +51,10 @@ export default function ColumnSeatPrice({ flight }: ColumnSeatPriceProps) {
               {rupiahFormat(flight.price + 500000)}
             </div>
             <div className="font-medium">
+              <span className="text-primary">Harga baggage:</span>{" "}
+              {rupiahFormat(flight.baggage)}
+            </div>
+            <div className="font-medium">
               <span className="text-primary">Sisa kursi:</span> {business}/
               {totalSeatBusiness}
             </div>
@@ -60,6 +68,10 @@ export default function ColumnSeatPrice({ flight }: ColumnSeatPriceProps) {
             <div className="font-medium">
               <span className="text-primary">Harga tiket:</span>{" "}
               {rupiahFormat(flight.price + 750000)}
+            </div>
+            <div className="font-medium">
+              <span className="text-primary">Harga baggage:</span>{" "}
+              {rupiahFormat(flight.baggage)}
             </div>
             <div className="font-medium">
               <span className="text-primary">Sisa kursi:</span> {first}/

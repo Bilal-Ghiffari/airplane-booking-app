@@ -40,8 +40,6 @@ export async function POST(request: NextRequest) {
       },
       include: {
         plane: true,
-        // seats: true,
-        // tickets: true
       },
     });
     return Response.json({ data });

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import NavbarAuth from "./navbarAuth";
 
 export default function Navbar() {
   return (
@@ -8,7 +9,7 @@ export default function Navbar() {
       id="Navbar"
       className="container max-w-[1130px] mx-auto flex justify-between items-center pt-[30px]"
     >
-      <Link href="index.html" className="flex items-center shrink-0">
+      <Link href="/" className="flex items-center shrink-0">
         <Image
           src="/assets/images/logos/logo.svg"
           width={120}
@@ -18,8 +19,8 @@ export default function Navbar() {
       </Link>
       <ul className="nav-menus flex gap-[30px] items-center w-fit">
         <li>
-          <Link href="" className="font-medium">
-            Flash Sale
+          <Link href="/available-flights" className="font-medium">
+            Available Flights
           </Link>
         </li>
         <li>
@@ -42,12 +43,7 @@ export default function Navbar() {
             About
           </Link>
         </li>
-        <Link
-          href="signin.html"
-          className="font-bold text-flysha-black bg-flysha-light-purple rounded-full p-[12px_30px] transition-all duration-300 hover:shadow-[0_10px_20px_0_#B88DFF]"
-        >
-          Sign In
-        </Link>
+        <NavbarAuth />
       </ul>
     </nav>
   );

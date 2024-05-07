@@ -1,7 +1,31 @@
-import { FlightSeat, TypeSeat } from "@prisma/client";
+import { AirPlane, Flight, FlightSeat, TypeSeat } from "@prisma/client";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import dayjs from "dayjs";
+
+export type Checkout = {
+  id?: string;
+  seat?: TypeSeat;
+  flightDetetail?: Flight & { plane: AirPlane };
+  seatDetail?: FlightSeat;
+};
+export const CHECKOUT_KEY = "CHECKOUT_KEY";
+export const SEAT_VALUES = {
+  ECONOMY: {
+    label: "Economy",
+    additionalPrice: 0,
+  },
+  BUSINESS: {
+    label: "Business",
+    additionalPrice: 500000,
+  },
+  FIRST: {
+    label: "First",
+    additionalPrice: 750000,
+  },
+};
+
+export type SeatValuesType = keyof typeof SEAT_VALUES;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -14,7 +38,7 @@ export const generateSeatPerClass = (flightId: string) => {
   const seats: { seatNumber: string; type: TypeSeat; flightId: string }[] = [];
   for (const className of SEAT_CLASS) {
     for (const seatCode of SEAT_CODE) {
-      for (let i = 1; i < 5; i++) {
+      for (let i = 1; i < 7; i++) {
         seats.push({
           seatNumber: seatCode + i,
           type: className as TypeSeat,
@@ -32,7 +56,7 @@ export const dateFormat = (
   format = "DD MMM YYYY HH:mm"
 ) => {
   if (!date) {
-    return "";
+    return "date not found";
   }
 
   const dateFormat = dayjs(date).format(format);
@@ -44,6 +68,34 @@ export const rupiahFormat = (value: number) => {
     style: "currency",
     currency: "IDR",
   }).format(value);
+};
+
+export const objectToParams = (obj: { [key: string]: unknown }) => {
+  const queryParams = Object.keys(obj)
+    .map((key) => {
+      if (obj[key] !== null) {
+        return `${key}=${obj[key]}`;
+      }
+      return "";
+    })
+    .filter((val) => val !== "")
+    .join("&");
+
+  return queryParams;
+};
+
+export const makeId = (length: number) => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charctersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charctersLength));
+    counter += 1;
+  }
+  console.log(result);
+  return result;
 };
 
 export const mappingSeats = (seats: FlightSeat[]) => {

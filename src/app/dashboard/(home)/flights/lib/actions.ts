@@ -14,6 +14,7 @@ export async function saveFlights(
   const validate = formFlightSchema.safeParse({
     planeId: formData.get("planeId"),
     price: formData.get("price"),
+    baggage: formData.get("baggage"),
     departureDate: new Date(formData.get("departureDate") as string),
     departureCity: formData.get("departureCity"),
     departureCityCode: formData.get("departureCityCode"),
@@ -35,6 +36,7 @@ export async function saveFlights(
       data: {
         ...validate.data,
         price: Number.parseInt(validate.data.price),
+        baggage: Number.parseInt(validate.data.baggage),
       },
     });
     const seats = generateSeatPerClass(flights.id);
@@ -57,6 +59,7 @@ export async function updateFlight(
   const validate = formFlightSchema.safeParse({
     planeId: formData.get("planeId"),
     price: formData.get("price"),
+    baggage: formData.get("baggage"),
     departureDate: new Date(formData.get("departureDate") as string),
     departureCity: formData.get("departureCity"),
     departureCityCode: formData.get("departureCityCode"),
@@ -79,6 +82,7 @@ export async function updateFlight(
       data: {
         ...validate.data,
         price: Number.parseInt(validate.data.price),
+        baggage: Number.parseInt(validate.data.baggage),
       },
     });
   } catch (error) {

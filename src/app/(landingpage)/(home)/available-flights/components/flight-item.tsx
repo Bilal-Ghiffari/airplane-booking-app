@@ -16,6 +16,7 @@ import {
   SeatValuesType,
 } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import useCheckoutData from "@/hooks/useCheckout";
 
 type FlightItem = {
   data: FlightWithPlane;
@@ -23,6 +24,8 @@ type FlightItem = {
 
 export default function FlightItem({ data }: FlightItem) {
   const { state } = useContext(FlightContext) as FlightContextType;
+  console.log("state", state);
+  console.log("dataFligth", data);
   const selectedSeat = useMemo(() => {
     return SEAT_VALUES[(state.seat as SeatValuesType) ?? "ECONOMY"];
   }, [state.seat]);
@@ -31,7 +34,7 @@ export default function FlightItem({ data }: FlightItem) {
   const bookNow = () => {
     sessionStorage.setItem(
       CHECKOUT_KEY,
-      JSON.stringify({ id: data.id, seat: state.seat ? state.seat : "Economy" })
+      JSON.stringify({ id: data.id, seat: state.seat ? state.seat : "ECONOMY" })
     );
     router.push(`/choose-seat/${data.id}`);
   };

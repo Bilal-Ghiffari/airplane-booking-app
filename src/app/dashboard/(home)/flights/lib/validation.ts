@@ -3,6 +3,7 @@ import { z } from "zod";
 export const formFlightSchema = z.object({
   planeId: z.string({ required_error: "Pesawat tidak boleh kosong" }),
   price: z.string({ required_error: "Harga tiket boleh kosong" }),
+  baggage: z.string({ required_error: "Harga Bagasi tidak boleh kosong" }),
   departureCity: z.string({
     required_error: "Kota keberangkatan tidak boleh kosong",
   }),

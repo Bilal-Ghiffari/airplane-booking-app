@@ -76,3 +76,25 @@ export async function getAirplanes() {
     return [];
   }
 }
+
+export const getFlightById = async (id: string) => {
+  try {
+    const data = await prisma.flight.findFirst({
+      where: {
+        id,
+      },
+      include: {
+        seats: {
+          orderBy: {
+            seatNumber: "asc",
+          },
+        },
+        plane: true,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};

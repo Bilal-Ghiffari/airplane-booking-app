@@ -17,7 +17,7 @@ export const airplaneFormSchema = z.object({
     .min(4, { message: "Nama Pesawat harus memiliki minimal 4 karakter" }),
   code: z
     .string({ required_error: "Kode Pesawat tidak boleh kosong" })
-    .regex(/^[A-Z]{3}-[0-9]{3}$/, "Format kode harus [XXX-111]"), // ABD-123
+    .regex(/^[A-Z]{2}-[0-9]{3}$/, "Format kode harus [XX-111]"), // ABD-123
   image: z
     .any()
     .refine(

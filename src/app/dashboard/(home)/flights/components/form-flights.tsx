@@ -47,7 +47,7 @@ export default function FormFlight({ airplanes, defaultValues, type }: Props) {
           </ul>
         </div>
       )}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         <div className="space-y-2">
           <Label htmlFor="planeId">Pilih pesawat</Label>
           <Select name="planeId" defaultValue={defaultValues?.planeId}>
@@ -78,6 +78,18 @@ export default function FormFlight({ airplanes, defaultValues, type }: Props) {
             Harga untuk class business bertambah Rp 500.000 & class first
             bertambah Rp 750.000
           </span>
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="baggage">Harga Baggage</Label>
+          <Input
+            placeholder="Harga Baggage..."
+            name="baggage"
+            id="baggage"
+            type="number"
+            min={0}
+            defaultValue={defaultValues?.baggage}
+            required
+          />
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4">

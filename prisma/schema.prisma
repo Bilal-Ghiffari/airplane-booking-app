@@ -68,6 +68,7 @@ model Flight {
   destinationCity String
   destinationCityCode String
   price Int
+  baggage Int
   seats FlightSeat[]
   tickets Ticket[]
 }
