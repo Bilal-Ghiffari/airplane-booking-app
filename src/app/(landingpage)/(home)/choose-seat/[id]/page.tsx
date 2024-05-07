@@ -1,8 +1,21 @@
 import React from "react";
 import SeatList from "./components/organism/seat-list";
 import SlideDetail from "./components/organism/slide-detail";
+import { getFlightById } from "../../lib/data";
+import { getUser } from "@/lib/auth";
+import { Session } from "lucia";
 
-export default function ChooseSeat() {
+type Params = {
+  id: string;
+};
+
+interface ChooseSeatType {
+  params: Params;
+}
+
+export default async function ChooseSeat({ params }: ChooseSeatType) {
+  const { session } = await getUser();
+  const flight = await getFlightById(params.id);
   return (
     <section
       id="Chosse-Seat"
@@ -44,11 +57,11 @@ export default function ChooseSeat() {
                 <span className="font-semibold">Available</span>
               </div>
             </div>
-            <SeatList />
+            {flight?.seats && <SeatList seats={flight.seats} />}
           </div>
         </div>
       </div>
-      <SlideDetail />
+      {flight && <SlideDetail flight={flight} session={session as Session} />}
     </section>
   );
 }

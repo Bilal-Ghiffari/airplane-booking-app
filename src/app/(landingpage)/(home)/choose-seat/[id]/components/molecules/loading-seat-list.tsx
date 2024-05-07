@@ -3,22 +3,40 @@ import React from "react";
 
 export default function LoadingSeatList() {
   return (
-    <form className="flex flex-col gap-5">
-      <div className="seat-row flex justify-between">
-        <div className="seat-col flex gap-[19px]">
+    <form className="flex flex-row justify-between gap-5">
+      <div className="flex gap-5">
+        <div className="flex flex-col gap-[19px]">
           {[0, 1, 2, 3, 4].map((val) => (
-            <Skeleton className="w-[60px] h-[60px] rounded-xl" key={val} />
-          ))}
-          {[0, 1, 2, 3, 4].map((val) => (
-            <Skeleton className="w-[60px] h-[60px] rounded-xl" key={val} />
+            <Skeleton
+              className="w-[60px] bg-gray-300 h-[60px] rounded-xl"
+              key={val}
+            />
           ))}
         </div>
-        <div className="seat-col flex gap-[19px]">
+        <div className="flex flex-col gap-[19px]">
           {[0, 1, 2, 3, 4].map((val) => (
-            <Skeleton className="w-[60px] h-[60px] rounded-xl" key={val} />
+            <Skeleton
+              className="w-[60px] bg-gray-300 h-[60px] rounded-xl"
+              key={val}
+            />
           ))}
+        </div>
+      </div>
+      <div className="flex gap-5">
+        <div className="flex flex-col gap-[19px]">
           {[0, 1, 2, 3, 4].map((val) => (
-            <Skeleton className="w-[60px] h-[60px] rounded-xl" key={val} />
+            <Skeleton
+              className="w-[60px] bg-gray-300 h-[60px] rounded-xl"
+              key={val}
+            />
+          ))}
+        </div>
+        <div className="flex flex-col gap-[19px]">
+          {[0, 1, 2, 3, 4].map((val) => (
+            <Skeleton
+              className="w-[60px] bg-gray-300 h-[60px] rounded-xl"
+              key={val}
+            />
           ))}
         </div>
       </div>
