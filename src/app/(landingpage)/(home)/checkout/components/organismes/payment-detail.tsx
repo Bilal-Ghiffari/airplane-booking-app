@@ -13,8 +13,8 @@ type PaymentDetailProps = {
 export default function PaymentDetail({ user }: PaymentDetailProps) {
   const checkout = useCheckoutData();
   const selectedSeat = useMemo(() => {
-    return SEAT_VALUES[(checkout?.seat as SeatValuesType) ?? "ECONOMY"];
-  }, [checkout?.seat]);
+    return SEAT_VALUES[(checkout?.typeSeat as SeatValuesType) ?? "ECONOMY"];
+  }, [checkout?.typeSeat]);
 
   const grandTotal = useMemo(() => {
     const seatPrice =
@@ -27,7 +27,7 @@ export default function PaymentDetail({ user }: PaymentDetailProps) {
   }, [
     checkout?.flightDetetail?.baggage,
     checkout?.flightDetetail?.price,
-    checkout?.seat,
+    checkout?.typeSeat,
   ]);
 
   const { isLoading, payTransaction } = useTransaction({ user });

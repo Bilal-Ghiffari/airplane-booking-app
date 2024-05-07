@@ -1,7 +1,7 @@
 import { User } from "lucia";
 import useCheckoutData from "./useCheckout";
 import { useMemo, useState } from "react";
-import { SEAT_VALUES, SeatValuesType } from "@/lib/utils";
+import { CHECKOUT_KEY, SEAT_VALUES, SeatValuesType } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -9,16 +9,6 @@ import { useRouter } from "next/navigation";
 type Props = {
   user: User | null;
 };
-
-// type DataType = {
-//   bookingDate: Date | string;
-//   price: bigint;
-//   customerId: string;
-//   flightId: string;
-//   seatId: string;
-//   departureCityCode: string;
-//   destinationCityCode: string;
-// };
 
 const useTransaction = ({ user }: Props) => {
   const checkout = useCheckoutData();
@@ -44,9 +34,6 @@ const useTransaction = ({ user }: Props) => {
       return null;
     }
 
-    // const totalPrice = BigInt(
-    //   checkout?.flightDetetail?.price ?? 0 + selectedSeat.additionalPrice
-    // );
     const body: any = {
       bookingDate: new Date(),
       customerId: user?.id ?? "user not found",
@@ -65,10 +52,12 @@ const useTransaction = ({ user }: Props) => {
       const transaction = await transactionMutate.mutateAsync(body);
       window.snap.pay(transaction?.midtrans?.token, {
         onSuccess: (result: unknown) => {
+          sessionStorage.removeItem(CHECKOUT_KEY);
           console.log(result);
           router.push("/success-checkout");
         },
         onPending: (result: unknown) => {
+          sessionStorage.removeItem(CHECKOUT_KEY);
           console.log(result);
           router.push("/success-checkout");
         },
