@@ -1,7 +1,7 @@
 "use server";
 
 import { getUser, lucia } from "@/lib/auth";
-import { objectToParams } from "@/lib/utils";
+import { dateFormat, objectToParams } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -28,10 +28,12 @@ export async function logout(): Promise<{ error: string } | null> {
 }
 
 export async function searchFlight(formData: FormData) {
+  const dateNow = new Date();
+  const defaultDate: string = dateFormat(dateNow, "YYYY-MM-DD");
   const searchData = {
     departure: formData.get("departure"),
     arrival: formData.get("arrival"),
-    date: formData.get("date"),
+    date: formData.get("date") || defaultDate,
   };
 
   const queryParams = objectToParams(searchData);

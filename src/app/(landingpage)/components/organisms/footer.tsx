@@ -127,7 +127,7 @@ export default function Footer() {
                 width={20}
                 height={20}
               />
-              buildwithangga
+              flaysha airplane
             </Link>
             <Link
               href=""
@@ -139,13 +139,13 @@ export default function Footer() {
                 width={20}
                 height={20}
               />
-              team@bwa.com
+              team@flaysha airplane
             </Link>
           </div>
         </div>
       </div>
       <p className="mx-auto mt-[60px] text-[#A0A0AC] text-sm z-10">
-        All Rights Reserved. Copyright BuildWithAngga 2024.
+        All Rights Reserved. Copyright flaysha airplane 2024.
       </p>
     </footer>
   );

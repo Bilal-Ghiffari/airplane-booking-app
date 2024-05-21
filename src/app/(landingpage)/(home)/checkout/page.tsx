@@ -5,6 +5,14 @@ import FlightCard from "./components/organismes/flight-card";
 import Benefits from "./components/organismes/benefits";
 import PaymentDetail from "./components/organismes/payment-detail";
 import { getUser } from "@/lib/auth";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Checkout",
+  description:
+    "Pesan tiket pesawat. Cukup satu aplikasi untuk kamu liburan. Mau ke mana? Semua ada tiketnya!",
+  icons: "/assets/images/logos/logo.svg",
+};
 
 export default async function CheckoutPage() {
   const { user } = await getUser();

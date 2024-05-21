@@ -4,6 +4,14 @@ import Navbar from "../../components/molecules/navbar";
 import TicketCard from "./components/ticket-card";
 import { getMyTicket } from "./lib/data";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Tickets",
+  description:
+    "Pesan tiket pesawat. Cukup satu aplikasi untuk kamu liburan. Mau ke mana? Semua ada tiketnya!",
+  icons: "/assets/images/logos/logo.svg",
+};
 
 export default async function MyTickets() {
   const { session, user } = await getUser();

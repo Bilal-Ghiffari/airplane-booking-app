@@ -5,6 +5,7 @@ import { getFlightById } from "../../lib/data";
 import { getUser } from "@/lib/auth";
 import { Session } from "lucia";
 import { User } from "lucia";
+import { Metadata } from "next";
 
 type Params = {
   id: string;
@@ -14,9 +15,17 @@ interface ChooseSeatType {
   params: Params;
 }
 
+export const metadata: Metadata = {
+  title: "Seats",
+  description:
+    "Pesan tiket pesawat. Cukup satu aplikasi untuk kamu liburan. Mau ke mana? Semua ada tiketnya!",
+  icons: "/assets/images/logos/logo.svg",
+};
+
 export default async function ChooseSeat({ params }: ChooseSeatType) {
   const { session, user } = await getUser();
   const flight = await getFlightById(params.id);
+
   return (
     <section
       id="Chosse-Seat"

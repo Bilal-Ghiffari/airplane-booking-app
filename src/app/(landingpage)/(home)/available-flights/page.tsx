@@ -6,7 +6,14 @@ import FilterFlight from "./components/filter-flight";
 import FlightsAvailable from "./components/flights-available";
 import ListFlight from "./components/list-flight";
 import LoadingFilterAirline from "./components/loading-filter-airline";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Searah",
+  description:
+    "Pesan tiket pesawat. Cukup satu aplikasi untuk kamu liburan. Mau ke mana? Semua ada tiketnya!",
+  icons: "/assets/images/logos/logo.svg",
+};
 
 export default function AvailableFlightsPage() {
   return (
