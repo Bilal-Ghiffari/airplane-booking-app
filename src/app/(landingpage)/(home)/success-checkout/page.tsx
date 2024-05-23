@@ -1,9 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import { getUser } from "@/lib/auth";
 import Navbar from "../../components/molecules/navbar";
 import CheckoutCard from "./components/checkout-card";
-import { getUser } from "@/lib/auth";
+import CheckoutLink from "./components/checkout-link";
 
 type Props = {};
 
@@ -26,26 +24,7 @@ export default async function SuccessCheckout({}: Props) {
       >
         <div className="checkout-container flex justify-center items-center gap-[100px]">
           <CheckoutCard user={user} />
-          <div className="flex flex-col gap-[42px] w-fit">
-            <h1 className="font-bold text-[32px] leading-[48px]">
-              Success Checkout. <br />
-              Enjoy Your Best Flight.
-            </h1>
-            <div className="flex flex-col gap-[14px]">
-              <Link
-                href="/available-flights"
-                className="font-bold text-flysha-black bg-flysha-light-purple rounded-full h-12 w-full transition-all duration-300 hover:shadow-[0_10px_20px_0_#B88DFF] flex justify-center items-center"
-              >
-                Book More Flights
-              </Link>
-              <Link
-                href="/my-tickets"
-                className="font-semibold bg-flysha-black hover:bg-flysha-bg-purple border border-white hover:border-0 rounded-full h-12 w-full transition-all duration-300 flex justify-center items-center"
-              >
-                View My Tickets
-              </Link>
-            </div>
-          </div>
+          <CheckoutLink />
         </div>
       </section>
     </>

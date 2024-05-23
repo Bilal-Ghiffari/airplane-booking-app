@@ -52,12 +52,10 @@ const useTransaction = ({ user }: Props) => {
       const transaction = await transactionMutate.mutateAsync(body);
       window.snap.pay(transaction?.midtrans?.token, {
         onSuccess: (result: unknown) => {
-          sessionStorage.removeItem(CHECKOUT_KEY);
           console.log(result);
           router.push("/success-checkout");
         },
         onPending: (result: unknown) => {
-          sessionStorage.removeItem(CHECKOUT_KEY);
           console.log(result);
           router.push("/success-checkout");
         },
